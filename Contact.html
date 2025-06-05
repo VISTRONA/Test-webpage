@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-4">
-    
-    <title>Contact Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form with Mailto</title>
 </head>
+<body>
+  <form id="contact-form" action="" method="post" enctype="text/plain">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your full name" required><br><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+    
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" placeholder="Enter your message" required></textarea><br><br>
+    
+    <input type="submit" value="Send" onclick="sendEmail(event)">
+  </form>
 
+  <div id="success-message" style="display:none; color:green;">
+    Thank you! Your message has been sent.
+  </div>
 
-<form id="contact-form">
-  <label for="fullName">Full Name:</label>
-  <input type="text" id="fullName" name="fullName"><br><br>
-  <label for="subject">Subject:</label>
-  <input type="text" id="subject" name="subject"><br><br>
-  <label for="comment">Comment:</label>
-  <textarea id="comment" name="comment"></textarea><br><br>
-  <button type="button" onclick="sendEmail()">Send Email</button>
-</form>
+  <script>
+    function sendEmail(event) {
+      event.preventDefault(); // Prevent the default form submission
 
-<script>
-function sendEmail() {
-  var name = document.getElementById('fullName').value;
-  var subject = document.getElementById('subject').value;
-  var message = "Hello my name is " + name + " -- " + document.getElementById('comment').value;
-  var email = "[email protected]";
-  var href = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(message);
-  console.log(href);
-  window.location.href = href;
-}
-</script>
-<hr />
-<a href="./index.html">Go Back</a>
-<hr />
-<h2>This may not work. Still testing html and improving my skills</h2>
- <footer><p> Last updated on 6 June 2025</p></footer>
+      const form = document.getElementById("contact-form");
+      const name = document.getElementById("name").value;
+      const user_email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+      const recipient_email = "brave.ai.thinkcode@ma.vistrona.com"; // Your email address
 
-</body>
+      // Construct the body of the email
+      const body = `Name: ${encodeURIComponent(name)}\nEmail: ${encodeURIComponent(user_email)}\nMessage: ${encodeURIComponent(message)}`;
+
+      // Construct the mailto URL
+      const href = `mailto:${recipient_email}?subject=Contact%20Form%20Submission&body=${body}`;
+
+      // Set the form action to the mailto URL and submit the form
+      form.action = href;
+      form.submit();
+
+      // Show success message
+      document.getElementById("success-message").style.display = "block";
+    }
+    </script>
+
+     <h2>This may not work. Still testing html and improving my skills</h2>
+    <h3>Mail to github.contact@ma.vistrona.com</h3> 
+   <a href="mailto:github.contact@ma.vistrona.com">Send Email</a>
+   <footer><p> Last updated on 6 June 2025</p></footer>
+
+ </body>
 
 </html>
