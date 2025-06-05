@@ -3,13 +3,37 @@
 <head>
     <meta charset="UTF-4">
     
-    <title>COntact Me</title>
+    <title>Contact Form</title>
 </head>
-<body>
-    <a href="mailto: github.makes@ma.vistrona.com">Email me</a> 
-    <p>at github.make@ma.cistrona.com</p>
-    <hr />
-    <a href="./index.html">Back to homepage
-  <footer>this Is footer</footer>
+
+
+<form id="contact-form">
+  <label for="fullName">Full Name:</label>
+  <input type="text" id="fullName" name="fullName"><br><br>
+  <label for="subject">Subject:</label>
+  <input type="text" id="subject" name="subject"><br><br>
+  <label for="comment">Comment:</label>
+  <textarea id="comment" name="comment"></textarea><br><br>
+  <button type="button" onclick="sendEmail()">Send Email</button>
+</form>
+
+<script>
+function sendEmail() {
+  var name = document.getElementById('fullName').value;
+  var subject = document.getElementById('subject').value;
+  var message = "Hello my name is " + name + " -- " + document.getElementById('comment').value;
+  var email = "[email protected]";
+  var href = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(message);
+  console.log(href);
+  window.location.href = href;
+}
+</script>
+<hr />
+<a href="./index.html">Go Back</a>
+<hr />
+<h2>This may not work. Still testing html and improving my skills</h2>
+ <footer><p> Last updated on 6 June 2025</p></footer>
+
 </body>
+
 </html>
